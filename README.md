@@ -474,7 +474,7 @@ Copy the logo and favicon you want from your local computer to the instance
 >
 > Upload logo.svg, favicon.svg, and favicon.png.
 > favicon.png is for the Safari web browser.
-> <!--used https://www.aconvert.com/ to convert a logo from JPG to SVG, to SVG 48x48, and to PNG 48x48-->
+> <!--used https://www.aconvert.com/ to convert a logo from JPG to SVG, to SVG 48x48, and to PNG 48x48, but `make generate-images` should create one automatically-->
 
 Install make
 
