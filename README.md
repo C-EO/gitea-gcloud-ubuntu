@@ -10,14 +10,14 @@ Enjoy!
 
 ## Table of Contents
 
-* [Part I: Create an Instance](./gitea.md#part-i-create-an-instance)
-* [Part II: Set Up the Instance](./gitea.md#part-ii-set-up-the-instance)
-* [Part III: Additional Measures to Secure Gitea](./gitea.md#part-iii-additional-measures-to-secure-gitea)
-* [Parts IV-VI: Enhance the Instance](./gitea.md#part-iv-enhance-the-instance)
-* [Part VII: Upgrading Packages, Collections and Ubuntu, and Retesting Functionality](./gitea.md#part-vii-upgrading-packages-collections-and-ubuntu-and-retesting-functionality)
-* [Part VIII: Troubleshooting](./gitea.md#part-viii-troubleshooting)
-* [Part IX: Privacy](./gitea.md#part-ix-privacy)
-* [Part X: Options](./gitea.md#part-x-options)
+* [Part I: Create an Instance](#part-i-create-an-instance)
+* [Part II: Set Up the Instance](#part-ii-set-up-the-instance)
+* [Part III: Additional Measures to Secure Gitea](#part-iii-additional-measures-to-secure-gitea)
+* [Parts IV-VI: Enhance the Instance](#part-iv-enhance-the-instance)
+* [Part VII: Upgrading Packages, Collections and Ubuntu, and Retesting Functionality](#part-vii-upgrading-packages-collections-and-ubuntu-and-retesting-functionality)
+* [Part VIII: Troubleshooting](#part-viii-troubleshooting)
+* [Part IX: Privacy](#part-ix-privacy)
+* [Part X: Options](#part-x-options)
 
 
 ## Part I: Create an Instance
