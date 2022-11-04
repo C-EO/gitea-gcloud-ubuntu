@@ -226,11 +226,13 @@ sudo nano /etc/caddy/Caddyfile
 
 Input:
 
-`mydomain.dev {` \
-&emsp;&emsp;`# root * /usr/share/caddy` \
-&emsp;&emsp;`# file_server` \
-&emsp;&emsp;`reverse_proxy localhost:3000` \
-`}`
+```bash
+mydomain.dev {
+	# root * /usr/share/caddy
+	# file_server
+	reverse_proxy localhost:3000
+}
+```
 
 Restart the web server
 
@@ -332,8 +334,10 @@ sudo nano /etc/gitea/app.ini
 
 Input:
 
-`[log]` \
-`MODE = file`
+```ini
+[log]
+MODE = file
+```
 
 Restart the service
 
@@ -375,10 +379,12 @@ sudo nano /etc/crowdsec/acquis.yaml
 
 Append:
 
-`filenames:` \
-&emsp;&emsp;`- /var/lib/gitea/log/gitea.log` \
-`labels:` \
-&emsp;&emsp;`type: gitea`
+```yaml
+filenames:
+	- /var/lib/gitea/log/gitea.log
+labels:
+	type: gitea
+```
 
 Reload crowdsec
 
@@ -577,14 +583,16 @@ nano templates/home.tmpl
 
 Leave only the logo, app name, and app description:
 
-`<!--` \
-&emsp;&emsp;`<div class="ui stackable middle very relaxed page grid">` \
-&emsp;&emsp;&#8942; \
-&emsp;&emsp;` </div>` \
-&emsp;&emsp;` <div class="ui stackable middle very relaxed page grid">` \
-&emsp;&emsp;&#8942; \
-&emsp;&emsp;` </div>` \
-`-->`
+```xml
+<!--
+	<div class="ui stackable middle very relaxed page grid">
+	...
+	</div>
+	<div class="ui stackable middle very relaxed page grid">
+	...
+	</div>
+-->
+```
 
 <!--also input a disclaimer-->
 
@@ -638,9 +646,11 @@ sudo nano /etc/gitea/app.ini
 
 Input:
 
-`[ui]` \
-`THEMES = auto,gitea,arc-green,redsilver` \
-`DEFAULT_THEME = redsilver`
+```ini
+[ui]
+THEMES = auto,gitea,arc-green,redsilver
+DEFAULT_THEME = redsilver
+```
 
 You can also remove the original theme color by inputting: `THEME_COLOR_META_TAG = none` \
 Otherwise, when you scroll down or up, areas above or below each webpage will still be colored green.
@@ -880,8 +890,10 @@ sudo nano /etc/gitea/app.ini
 
 Input:
 
-`[repository]` \
-`DISABLE_STARS = true`
+```ini
+[repository]
+DISABLE_STARS = true
+```
 
 Restart Gitea
 
@@ -923,8 +935,10 @@ nano $HOME/.inputrc
 
 Input exactly:
 
-`"\e[A": history-search-backward` \
-`"\e[B": history-search-forward`
+```bash
+"\e[A": history-search-backward
+"\e[B": history-search-forward
+```
 
 Start a new session
 
@@ -951,8 +965,10 @@ sudo nano /etc/gitea/app.ini
 
 Input:
 
-`[repository]` \
-`ENABLE_PUSH_CREATE_USER = true`
+```ini
+[repository]
+ENABLE_PUSH_CREATE_USER = true
+```
 
 Restart Gitea
 
