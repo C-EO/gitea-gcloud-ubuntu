@@ -19,7 +19,6 @@ Enjoy!
 * [Part IX: Privacy](#part-ix-privacy)
 * [Part X: Options](#part-x-options)
 
-
 ## Part I: Create an Instance
 
 Let's get some formalities *squared away*...
@@ -977,6 +976,8 @@ sudo systemctl restart gitea
 ```
 
 All done!
+
+<!-- also removed snapd -->
 
 ## Extended Resources
 
