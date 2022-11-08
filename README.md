@@ -468,13 +468,16 @@ Install Node.js
 >
 > *The latest LTS version is available as a snap package, unfortunately when I installed it and ran `make generate-images` (below), I received an error: "Not implemented: HTMLCanvasElement.prototype.getContext" (see also [issue #20157 &#128279;](https://github.com/go-gitea/gitea/issues/20157)).* 
 
+Prepare logo and favicon you want
+
+Start with the logo. Export the PNG or JPG/JPEG image file to a SVG vector file. Then, scale the vector file to, say 48px x 48px, and export that. Name these vector files as `logo.svg` and `favicon.svg`, respectively.
+
+> Suggestion: Use vector graphics software (e.g., Inkscape or Affinity Designer). For Inkscape, export image files to <b>Inkscape SVG</b>. For Affinity Designer, export image files to <b>SVG (for export)</b>.
+
 Copy the logo and favicon you want from your local computer to the instance
 
-> Click on UPLOAD FILE at the top edge of the pop-up window.
->
-> Upload logo.svg, favicon.svg, and favicon.png.
-> favicon.png is for the Safari web browser.
-> <!--used https://www.aconvert.com/ to convert a logo from JPG to SVG, to SVG 48x48, and to PNG 48x48, but `make generate-images` should create one automatically-->
+> Click on UPLOAD FILE at the top edge of the pop-up window. \
+> Upload logo.svg and favicon.svg.
 
 Install make
 
@@ -496,7 +499,6 @@ mv favicon.svg gitea-source/assets/
 ```
 
 > Run one command at a time.
-> Skip favicon.png for now.
 
 Generate new images for your logo and favicon
 
@@ -515,11 +517,7 @@ Locate the images
 cd public/img
 ```
 
-Place favicon.png in this directory
-
-```bash
-mv $HOME/favicon.png .
-```
+> Other SVG export formats could work, as well, but with Inkscape SVG or SVG (for export) the `make generate-images` command will generate the images completely. With other export formats, the command may not do so, for example with Affinity Designer's SVG (digital - high quality) preset, the command did not generate logo.png and favicon.png.
 
 Create an "img" directory in the working directory of your instance, and move everything into it
 
@@ -540,7 +538,7 @@ Check [https://mydomain.dev &#128279;](https://mydomain.dev)
 > If you are using either the Firefox or Chrome desktop web browser, the favicon should change.
 >
 > However, if you are using the Safari desktop web browser, you will need to quit Safari, empty the favicon cache, and re-launch Safari. \
-> To empty the favicon cache, launch Finder > Go to Folder... > `~/Library/Safari/Favicon Cache/`. Select all items, move them to the trash, and empty the trash.4
+> To empty the favicon cache, launch Finder > Go > Go to Folder... > `~/Library/Safari/Favicon Cache/`. Select all items in the folder, move them to the trash, and empty the trash.
 
 Back to Cloud Shell
 
@@ -981,6 +979,8 @@ All done!
 
 ## Extended Resources
 
+* Affinity Designer: [https://affinity.serif.com/en-us/designer/ &#128279;](https://affinity.serif.com/en-us/designer/)
 * Gitea Documentation: [https://docs.gitea.io/en-us/ &#128279;](https://docs.gitea.io/en-us/)
 * Google Cloud Documentation: [https://cloud.google.com/docs &#128279;](https://cloud.google.com/docs)
+* Inkscape: [https://inkscape.org &#128279;](https://inkscape.org)
 * Minimal Ubuntu: [https://canonical.com/blog/minimal-ubuntu-released &#128279;](https://canonical.com/blog/minimal-ubuntu-released)
