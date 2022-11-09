@@ -245,10 +245,8 @@ Install the Git service
 
 [https://gitlab.com/packaging/gitea/ &#128279;](https://gitlab.com/packaging/gitea/)
 
-> Run the last command with `sudo`. That is, `sudo systemctl enable --now gitea`
->
-> If you prefer installing Gitea manually, consult [https://docs.gitea.io/en-us/install-from-binary/ &#128279;](https://docs.gitea.io/en-us/install-from-binary/)  <!--I used to install and upgrade the binary, but it's tricky to install and upgrade.-->
->
+> Run the last command with `sudo`. That is, `sudo systemctl enable --now gitea` \
+> If you prefer installing Gitea manually, consult [https://docs.gitea.io/en-us/install-from-binary/ &#128279;](https://docs.gitea.io/en-us/install-from-binary/)  <!--I used to install and upgrade the binary, but it's tricky to install and upgrade.--> \
 > Gitea is available as a snap package, unfortunately you cannot modify the logo, home page or theme.
 
 Set up the service
@@ -268,9 +266,8 @@ SMTP Username: `example@gmail.com` \
 SMTP Password: `***` \
 &check; Enable email notifications
 
-> Port 465 uses recommended Implicit TLS. See [https://docs.gitea.io/en-us/email-setup/ &#128279;](https://docs.gitea.io/en-us/email-setup/)
->
-> For the SMTP Password, use an [App Password &#128279;](https://support.google.com/accounts/answer/185833?hl=en). This requires 2-Step verification.
+> Port 465 uses recommended Implicit TLS. See [https://docs.gitea.io/en-us/email-setup/ &#128279;](https://docs.gitea.io/en-us/email-setup/) \
+> For the SMTP Password, use an [App Password &#128279;](https://support.google.com/accounts/answer/185833?hl=en). This requires two-step verification.
 > <!--"Send Email As" is redundant-->
 
 *Server and Third-Party Service Settings*
@@ -307,7 +304,7 @@ Create another snapshot...
 
 ## Part III: Additional Measures to Secure Gitea
 
-Enabling 2-step verification, registering a domain that requires an SSL certificate, disabling OpenID sign-in, disabling self-registration, and using a strong administrator password help secure Gitea by restricting access to it. 
+Enabling two-step verification, registering a domain that requires an SSL certificate, disabling OpenID sign-in, disabling self-registration, and using a strong administrator password help secure Gitea by restricting access to it. 
 
 However, we can do better...
 
@@ -393,7 +390,7 @@ sudo systemctl reload crowdsec
 
 Test it
 
-Go to [https://mydomain.dev &#128279;](https://mydomain.dev). Create several failed authentication attempts until the website times out. Check `sudo cscli decisions list`, and you should see an ID (e.g., 9098) with your IP address banned. Either wait or unban yourself: `sudo cscli decisions delete --id 9098`. Re-attempt to sign in.
+Go to [https://mydomain.dev &#128279;](https://mydomain.dev). Create several failed authentication attempts until the website times out. Check `sudo cscli decisions list`, and you should see an ID (e.g., 9098) with your IP address banned. Either wait, or unban yourself: `sudo cscli decisions delete --id 9098`. Re-attempt to sign in.
 
 #### Mitigate the Risk of Cross-Regional Outages
 
@@ -462,8 +459,7 @@ Install Node.js
 
 [https://github.com/nodesource/distributions/blob/master/README.md &#128279;](https://github.com/nodesource/distributions/blob/master/README.md)
 
-> You will need the latest LTS version of Node.js, and look for "Node.js LTS" 
->
+> You will need the latest LTS version of Node.js, and look for "Node.js LTS" \
 > The version of Node.js packaged with Ubuntu will be outdated.
 >
 > *The latest LTS version is available as a snap package, unfortunately when I installed it and ran `make generate-images` (below), I received an error: "Not implemented: HTMLCanvasElement.prototype.getContext" (see also [issue #20157 &#128279;](https://github.com/go-gitea/gitea/issues/20157)).* 
@@ -494,16 +490,14 @@ git clone https://github.com/go-gitea/gitea.git gitea-source
 Replace the logo and favicon in the cloned repository's assets directory with yours
 
 ```bash
-mv logo.svg gitea-source/assets/
+mv logo.svg gitea-source/assets/ && \
 mv favicon.svg gitea-source/assets/
 ```
-
-> Run one command at a time.
 
 Generate new images for your logo and favicon
 
 ```bash
-cd gitea-source/
+cd gitea-source/ && \
 make generate-images
 ```
 
@@ -522,8 +516,8 @@ cd public/img
 Create an "img" directory in the working directory of your instance, and move everything into it
 
 ```bash
-export WD=/var/lib/gitea/
-sudo mkdir -p $WD/custom/public/img/
+export WD=/var/lib/gitea/ && \
+sudo mkdir -p $WD/custom/public/img/ && \
 sudo mv * $WD/custom/public/img/
 ```
 
@@ -563,7 +557,7 @@ Clone Gitea's source repository
 Checkout the latest release
 
 ```bash
-cd gitea-source/
+cd gitea-source/ && \
 git checkout f48fda8eefa4d47e335f01ac92366b9373950e0e
 ```
 
@@ -596,8 +590,8 @@ Leave only the logo, app name, and app description:
 Create a "templates" directory in the working directory of your instance, and move the "home" template into it
 
 ```bash
-export WD=/var/lib/gitea/
-sudo mkdir $WD/custom/templates/
+export WD=/var/lib/gitea/ && \
+sudo mkdir $WD/custom/templates/ && \
 sudo mv templates/home.tmpl $WD/custom/templates/
 ```
 
@@ -630,8 +624,8 @@ cd Gitea-Red-Silver/public/css
 Create an "css" directory in the working directory of your instance, and move the CSS file into it
 
 ```bash
-export WD=/var/lib/gitea/
-sudo mkdir -p $WD/custom/public/css/
+export WD=/var/lib/gitea/ && \
+sudo mkdir -p $WD/custom/public/css/ && \
 sudo mv theme-redsilver.css $WD/custom/public/css/
 ```
 
@@ -649,8 +643,8 @@ THEMES = auto,gitea,arc-green,redsilver
 DEFAULT_THEME = redsilver
 ```
 
-You can also remove the original theme color by inputting: `THEME_COLOR_META_TAG = none` \
-Otherwise, when you scroll down or up, areas above or below each webpage will still be colored green.
+> You can also remove the original theme color by inputting: `THEME_COLOR_META_TAG = none` \
+> Otherwise, when you scroll down or up, areas above or below each webpage will still be colored green.
 
 Restart the service
 
@@ -759,11 +753,17 @@ Check [https://mydomain.dev &#128279;](https://mydomain.dev)
 
 #### Retesting Brute Force Protection
 
-Create a failed authentication attempt at [https://mydomain.dev &#128279;](https://mydomain.dev)
-
 Back to the SSH browser window
 
-Check logs...
+Reset Crowdsec's metrics
+
+```bash
+sudo systemctl reload crowdsec
+```
+
+Create a failed authentication attempt at [https://mydomain.dev &#128279;](https://mydomain.dev)
+
+Check Crowdsec's metrics
 
 ```bash
 sudo cscli metrics
@@ -783,7 +783,7 @@ If you run into any issues...
 
 Back to the SSH browser window
 
-First, check Gitea...
+##### Check Gitea
 
 ```bash
 sudo systemctl status gitea --no-pager --full
@@ -791,7 +791,7 @@ sudo systemctl status gitea --no-pager --full
 
 If the problem(s) exists here, consult the example below. (I will add additional examples, if any new problems arise.)
 
-##### Example: *"UNIQUE constraint failed: webauthn_credential.lower_name, webauthn_credential.user_id"*
+###### Example: *"UNIQUE constraint failed: webauthn_credential.lower_name, webauthn_credential.user_id"*
 
 Let's say the lower_name = yubikey (and user_id = 21)
 
@@ -841,6 +841,8 @@ sudo cat /var/lib/gitea/log/gitea.log
 ```
 
 If the problem(s) exists elsewhere, then check Caddy...
+
+###### Check Caddy
 
 ```bash
 sudo systemctl status caddy --no-pager --full
@@ -908,7 +910,7 @@ Following other users can also reveal users and their activity
 
 - [x]  Caution users about following other users
 
-#### Suggestions
+#### Suggestion
 
 - [x] ALL users enroll in Two-Factor Authentication
 
