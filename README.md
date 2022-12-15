@@ -989,3 +989,7 @@ All done!
 * Google Cloud Documentation: [https://cloud.google.com/docs &#128279;](https://cloud.google.com/docs)
 * Inkscape: [https://inkscape.org &#128279;](https://inkscape.org)
 * Minimal Ubuntu: [https://canonical.com/blog/minimal-ubuntu-released &#128279;](https://canonical.com/blog/minimal-ubuntu-released)
+
+## Future Research
+
+* Potentially hosting Gitea on Google Cloud in Minimal Ubuntu LTS <u>on ARM</u>
