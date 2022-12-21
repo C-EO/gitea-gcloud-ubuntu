@@ -471,7 +471,7 @@ Prepare logo and favicon you want
 Focus on the logo. Export the PNG or JPG/JPEG image file to a SVG vector file. Name the vector file as `logo.svg`. Then, duplicate the file and rename the duplicate as `favicon.svg`.
 
 
-> Suggestion: Use vector graphics software (e.g., Inkscape or Affinity Designer). For Inkscape, export image files to <b>Inkscape SVG</b>. For Affinity Designer, export image files to <b>SVG (for export)</b>. Pixelmator Pro, an image editor, also works by exporting image files to simply <b>SVG</b>.
+> Suggestion: Use vector graphics software (e.g., Inkscape or Affinity Designer). For Inkscape, export image files to <b>Inkscape SVG</b>. For Affinity Designer, export image files to <b>SVG (for export)</b>. Pixelmator Pro, an image editor, also works by ~~exporting image files~~ converting areas in image files to shapes, grouping the shapes and exporting the group to simply <b>SVG</b>.
 
 Copy the logo and favicon you want from your local computer to the instance
 
