@@ -913,7 +913,7 @@ Create a dummy user account
 
 ~~- [x]  Caution users about following other users~~
 
-(Fixed in Gitea 1.17.4. See also [https://github.com/go-gitea/gitea/pull/21849 &#128279;](https://github.com/go-gitea/gitea/pull/21849).)
+(Fixed in Gitea 1.17.4. See also go-gitea/gitea#21849 &#128279;.)
 
 #### Suggestion
 
