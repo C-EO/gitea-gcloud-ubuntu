@@ -907,11 +907,13 @@ sudo systemctl restart gitea
 
 Create a dummy user account
 
-#### Caution
+~~#### Caution~~
 
-Following other users can also reveal users and their activity
+~~Following other users can also reveal users and their activity~~
 
-- [x]  Caution users about following other users
+~~- [x]  Caution users about following other users~~
+
+(Fixed in Gitea 1.17.4. See also [https://github.com/go-gitea/gitea/pull/21849 &#128279;](https://github.com/go-gitea/gitea/pull/21849).)
 
 #### Suggestion
 
