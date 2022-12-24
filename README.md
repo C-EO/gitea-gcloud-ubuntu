@@ -863,26 +863,28 @@ Protect users...
 
 [https://mydomain.dev &#128279;](https://mydomain.dev) 
 
-#### Hide Adminstrator Visibility and Activity
+#### Hide Administrator Visibility ~~and Activity~~
 
-Adminstrator visibility and activity can reveal users and their activity
+Administrator visibility ~~and activity~~ can reveal ~~users and their activity~~ them self
 
 - [x] Administrator Account > Settings > Profile > User visibility: Private
-- [x] Administrator Account > Settings > Profile > &check; Hide the activity from the profile page
+~~- [x] Administrator Account > Settings > Profile > &check; Hide the activity from the profile page~~ (redundant)
 
-#### Hide Regular Users' Visibility and Activity
+#### Hide Regular Users' Visibility ~~and Activity~~
 
-Regular users' visibility and activity can reveal themselves and their activity
+Regular users' visibility ~~and activity~~ can reveal themselves ~~and their activity~~
 
 - [x] Administrator Account > Site Administration > User Accounts > Create/Edit User Account > User visibility: Private
 
-> Users who want to be discoverable by private users can use Limited visibility. Just be sure you hide activity from your profile page. \
-> Users who want to be discoverable by ALL users (even external ones) can use Public visibility. \
-> Users who want their repositories to be discoverable by private users or ALL users must make their repositories Public. This is especially true for forks.
+> Users who want to be discoverable by private users can use Limited visibility. ~~Just be sure you hide activity from your profile page.~~ (optional) \
+> Users who want to be discoverable by ALL users (even external ones) can use Public visibility.
+
+> Users who want their repositories to be discoverable and forkable by private users must use Limited visibility and make their repositories Public. \
+> Users who want their repositories to be discoverable and forkable by ALL users (even external ones) must use Public visibility and make their repositories Public.
 
 #### Disable Stars
 
-Starring repositories can reveal users and their activity
+Starring repositories can reveal users ~~and their activity~~
 
 Edit Gitea's configuration file
 
@@ -905,7 +907,9 @@ sudo systemctl restart gitea
 
 #### Test Privacy Settings
 
-Create a dummy user account
+Create a dummy user account(s).
+
+Log into it to see what other users see.
 
 ~~#### Caution~~
 
@@ -913,7 +917,7 @@ Create a dummy user account
 
 ~~- [x]  Caution users about following other users~~
 
-(Fixed in Gitea 1.17.4. See also go-gitea/gitea#21849 &#128279;.)
+(Fixed in Gitea 1.17.4. See also go-gitea/gitea#21849 &#128279;. Of course, followed users can still inadvertently reveal followers.)
 
 #### Suggestion
 
