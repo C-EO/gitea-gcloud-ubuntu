@@ -917,7 +917,7 @@ Log into it to see what other users see.
 
 ~~- [x]  Caution users about following other users~~
 
-(Fixed in Gitea 1.17.4. See also go-gitea/gitea#21849 &#128279;. Of course, followed users can still inadvertently reveal followers.)
+~~(Fixed in Gitea 1.17.4. See also go-gitea/gitea#21849 &#128279;. Of course, followed users can still inadvertently reveal followers.)~~
 
 #### Suggestion
 
