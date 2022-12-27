@@ -432,7 +432,7 @@ Double-check that all of these measures have been taken...
 - [x] protected from brute-force attacks (crowdsec)
 - [x] mitigated risk of cross-regional outages (Part II)
 
-In fact, I like that Ubuntu packages&mdash;except for Node.js (Part IV)&mdash;are relatively up-to-date, not *bleeding edge* / potentially unstable as on Arch Linux and not potentially outdated as on Debian or REHL.
+In fact, I like that Ubuntu packages&mdash;except for Node.js (Part IV)&mdash;are relatively up-to-date, not *bleeding edge* / potentially unstable as on Arch Linux and not potentially outdated as on Debian or RHEL.
 
 > Keep in mind...
 >
