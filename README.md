@@ -878,7 +878,7 @@ sudo add-apt-repository ppa:git-core/ppa
 Run
 
 ```bash
-sudo apt update
+sudo apt update && \
 sudo apt install git
 ```
 
