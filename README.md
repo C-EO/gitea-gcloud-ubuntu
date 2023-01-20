@@ -855,6 +855,33 @@ sudo systemctl status caddy --no-pager --full
 
 In over one year hosting Gitea on Google Cloud, though, I have only encountered two issues, both of which involved Gitea and occurred after upgrading it (one required removing a webauthn_credential, and the other required a downgrade)...neither involved Caddy, nor Ubuntu, nor any other package. (I just started using Crowdsec.)
 
+#### Troubleshooting a Security Vulnerability
+
+EXAMPLE
+
+["gitattributes parsing integer overflow" &#128279;](https://github.com/git/git/security/advisories/GHSA-c738-c5qq-xg89)
+
+SOLUTION
+
+Install software-properties-common
+
+```bash
+sudo apt install software-properties-common
+```
+
+Add Ubuntu Git Maintainers' Personal Package Archive (PPA)
+
+```bash
+sudo add-apt-repository ppa:git-core/ppa
+```
+
+Run
+
+```bash
+sudo apt update
+sudo apt install git
+```
+
 ## Part IX: Privacy
 
 Protect users...
