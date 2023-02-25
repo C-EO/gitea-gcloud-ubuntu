@@ -721,7 +721,9 @@ sudo systemctl reload crowdsec
 > If asked to reboot, run: `sudo reboot`. \
 > Wait a moment, then retry connecting to the instance.
 
-#### Upgrading Ubuntu
+#### Upgrading Ubuntu Releases
+
+> Not for Ubuntu LTS point releases!
 
 Back to Cloud Shell
 
