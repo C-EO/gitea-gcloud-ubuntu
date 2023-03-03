@@ -721,6 +721,14 @@ sudo systemctl reload crowdsec
 > If asked to reboot, run: `sudo reboot`. \
 > Wait a moment, then retry connecting to the instance.
 
+##### Excluding Ubuntu Packages
+
+Useful, if you want to skip one newer package version: \
+`sudo apt-mark hold [package]`
+
+To re-commence upgrades: \
+`sudo apt-mark unhold [package]`
+
 #### Upgrading Ubuntu Releases
 
 > Not for Ubuntu LTS point releases!
