@@ -407,6 +407,19 @@ Back to the SSH browser window
 sudo dhclient -v -r
 ```
 
+#### Mitigate Snapshot Restoration Error
+
+Periodically, if one attempts to restore a snapshot they will encounter an error message: 'Operation type [insert] failed with message "The zone...does not have enough resources available to fulfill the request. Try a different zone, or try again later.'
+
+Reconnect to Cloud Shell
+
+```bash
+gcloud compute reservations create my-reservation \
+	--zone=us-west1-b \
+	--vm-count=1 \
+	--machine-type=e2-small 
+```
+
 #### Checklist
 
 Double-check that all of these measures have been taken...
@@ -431,6 +444,7 @@ Double-check that all of these measures have been taken...
 - [x] closed port 3000
 - [x] protected from brute-force attacks (crowdsec)
 - [x] mitigated risk of cross-regional outages (Part II)
+- [x] mitigated snapshot restoration error
 
 In fact, I like that Ubuntu packages&mdash;except for Node.js (Part IV)&mdash;are relatively up-to-date, not *bleeding edge* / potentially unstable as on Arch Linux and not potentially outdated as on Debian or RHEL.
 
