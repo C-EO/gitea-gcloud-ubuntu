@@ -1053,4 +1053,4 @@ All done!
 
 ## Known Issue
 
-- [ ] For Gitea 1.19.0, Safari users who have multiple tabs open (e.g., Gitea repo in one tab and Gitea wiki in another) may be abruptly logged out. Current workaround: Disable "Prevent cross-site tracking."
+- [ ] For Gitea 1.19.0, Safari users who have multiple tabs open (e.g., Gitea repo in one tab and Gitea wiki in another) may be abruptly logged out. ~~Current workaround: Disable "Prevent cross-site tracking."~~ (Workaround fails, will submit issue.)
