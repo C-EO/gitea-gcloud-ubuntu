@@ -1050,3 +1050,7 @@ All done!
 ## Future Research
 
 * Potentially hosting Gitea on Google Cloud in Minimal Ubuntu LTS <u>on ARM</u>
+
+## Known Issue
+
+- [ ] For Gitea 1.19.0, Safari users who have multiple tabs open (e.g., Gitea repo in one tab and Gitea wiki in another) may be abruptly logged out. Current workaround: Disable "Prevent cross-site tracking."
