@@ -906,6 +906,14 @@ sudo apt update && \
 sudo apt install git
 ```
 
+#### Troubleshooting Images Not Loading and Being Logged Out
+
+MP4 files do not load properly, and&mdash;for whatever reason&mdash;you will be logged out.
+
+SOLUTION
+
+Replace MP4 files with GIF files.
+
 ## Part IX: Privacy
 
 Protect users...
@@ -1053,4 +1061,4 @@ All done!
 
 ## Known Issue
 
-- [ ] For Gitea 1.19.0, Safari users who have multiple tabs open (e.g., Gitea repo in one tab and Gitea wiki in another) may be abruptly logged out. ~~Current workaround: Disable "Prevent cross-site tracking."~~ (Workaround fails, will submit issue.)
+- [ ] For Gitea 1.19.0+, Safari users who have multiple tabs open (e.g., Gitea repo in one tab and Gitea wiki in another) may be abruptly logged out. ~~Current workaround: Disable "Prevent cross-site tracking."~~ (Workaround failed.) Replacing MP4 files with GIF files partially helped, but users still eventually get logged out. (Will submit issue.)
