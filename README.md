@@ -1061,4 +1061,4 @@ All done!
 
 ## Known Issue
 
-- [ ] For Gitea 1.19.0+, Safari users who have multiple tabs open (e.g., Gitea repo in one tab and Gitea wiki in another) may be abruptly logged out. ~~Current workaround: Disable "Prevent cross-site tracking."~~ (Workaround failed.) Replacing MP4 files with GIF files partially helped, but users still eventually get logged out. (Will submit issue.)
+- [ ] For Gitea 1.19.0+, Safari users who have multiple tabs open (e.g., Gitea repo in one tab and Gitea wiki in another) may be abruptly logged out. ~~Current workaround: Disable "Prevent cross-site tracking."~~ (Workaround failed.) Replacing MP4 files with GIF files partially helped, but users still eventually get logged out. Clearing browsing history temporarily works. (See [issue #24176 &#128279;](https://github.com/go-gitea/gitea/issues/24176). Mitigating issue by using Google Chrome.)
