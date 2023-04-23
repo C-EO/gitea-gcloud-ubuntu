@@ -260,7 +260,8 @@ Gitea Base URL: `https://mydomain.dev/`
 
 *Email Settings*
 
-SMTP Host: `smtp.gmail.com:465` \
+SMTP Host: `smtp.gmail.com` \
+SMTP Port: `465` \
 Send Email As: `example@gmail.com` \
 SMTP Username: `example@gmail.com` \
 SMTP Password: `***` \
