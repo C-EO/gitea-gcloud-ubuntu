@@ -132,7 +132,7 @@ gcloud compute addresses create gitea-address \
 
 [https://console.cloud.google.com/net-services/domains/registrations/list &#128279;](https://console.cloud.google.com/net-services/domains/registrations/list)
 
-Register `mydomain.dev` (~~or~~ any domain that equally requires an SSL certificate)
+Register `mydomain.dev` (~~or~~ any domain that ~~equally~~ requires an SSL certificate)
 
 ### Cloud DNS
 
