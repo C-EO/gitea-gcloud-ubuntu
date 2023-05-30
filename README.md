@@ -1,6 +1,6 @@
 # Host Gitea on Google Cloud in Minimal Ubuntu LTS (Example)
 
-In over one year hosting Gitea on Google Cloud, I have enjoyed the self-hosted Git service.
+In over ~~one~~ two years hosting Gitea on Google Cloud, I have enjoyed the self-hosted Git service.
 
 Creating an instance, setting it up, and securing the service was an amazing adventure. Enhancing the instance was, well, tricky but rewarding. Gitea itself is, indeed, (arguably!) painless: I have only encountered two issues, issues which I think even an enthusiast can fix with a little knowledge of SQLite3.
 
@@ -878,7 +878,7 @@ sudo systemctl status caddy --no-pager --full
 
 > You can safely ignore any "context canceled" errors. See ["Aborting with incomplete response" &#128279;](https://caddy.community/t/aborting-with-incomplete-response/10990).
 
-In over one year hosting Gitea on Google Cloud, though, I have only encountered two issues, both of which involved Gitea and occurred after upgrading it (one required removing a webauthn_credential, and the other required a downgrade)...neither involved Caddy, nor Ubuntu, nor any other package. (I just started using Crowdsec.)
+In over ~~one~~ two years hosting Gitea on Google Cloud, though, I have only encountered two issues, both of which involved Gitea and occurred after upgrading it (one required removing a webauthn_credential, and the other required a downgrade)...neither involved Caddy, nor Ubuntu, nor any other package. ~~(I just started using Crowdsec.)~~
 
 #### Troubleshooting a Security Vulnerability
 
