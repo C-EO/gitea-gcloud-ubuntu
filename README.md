@@ -138,7 +138,7 @@ Register `mydomain.dev` (~~or~~ any domain that ~~equally~~ requires an SSL cert
 
 [https://console.cloud.google.com/net-services/dns/ &#128279;](https://console.cloud.google.com/net-services/dns/)
 
-Add a Type A DNS record
+Click on the zone name, and add a Type A DNS record
 
 TTL: `360` `minutes` \
 IPv4 Address: `34.168.233.62`
