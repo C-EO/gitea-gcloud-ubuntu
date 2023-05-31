@@ -939,7 +939,7 @@ Regular users' visibility ~~and activity~~ can reveal themselves ~~and their act
 > Users who want to be discoverable by private users can use Limited visibility. ~~Just be sure you hide activity from your profile page.~~ (optional) \
 > Users who want to be discoverable by ALL users (even external ones) can use Public visibility.
 
-> Users who want their repositories to be discoverable and forkable by private users must use Limited visibility and make their repositories Public. \
+> Users who want their repositories to be discoverable and forkable by private users must use Limited visibility and ~~make their repositories Public~~ add the private users as collaborators. \
 > Users who want their repositories to be discoverable and forkable by ALL users (even external ones) must use Public visibility and make their repositories Public.
 
 #### Disable Stars
