@@ -233,10 +233,10 @@ mydomain.dev {
 }
 ```
 
-Restart the web server
+~~Restart~~ Reload the web server
 
 ```bash
-sudo systemctl restart caddy
+sudo systemctl reload caddy
 ```
 
 ###### Gitea
@@ -529,6 +529,10 @@ Locate the images
 cd public/img
 ```
 
+Feel free to download a copy of logo.png for a maintenance page (see [Part VI &#128279;](https://github.com/saegl5/gitea-gcloud-ubuntu#redirect-domain-for-maintenance))
+
+> Click on DOWNLOAD FILE at the top edge of the pop-up window.
+
 > Other SVG export formats could work, as well, but with Inkscape SVG or SVG (for export) the `make generate-images` command will generate the images completely. With other export formats, the command may not do so, for example with Affinity Designer's SVG (digital - high quality) preset, the command did not generate logo.png and favicon.png.
 
 Create an "img" directory in the working directory of your instance, and move everything into it
@@ -715,6 +719,122 @@ gcloud compute disks add-resource-policies gitea \
 ```
 
 > Snapshots make Gitea's [backup and restore commands &#128279;](https://docs.gitea.io/en-us/backup-and-restore/) redundant. I am grateful for this, as well, because for me the backup command never completely worked (e.g., avatars and repo-avatars were never backed up).
+
+#### Redirect Gitea for Maintenance
+
+Back to Cloud Shell
+
+Create a new instance, and reserve the external IP address (see [Part I &#128279;](https://github.com/saegl5/gitea-gcloud-ubuntu#create-an-instance))
+
+> e2-micro should be sufficient.
+
+Register a new domain for the (new) instance, and add a Type A DNS record (see [Part I &#128279;](https://github.com/saegl5/gitea-gcloud-ubuntu#cloud-domains))
+
+> Remember to use the reserved external IP address for the DNS record.
+
+Set up the instance (see [Part II &#128279;](https://github.com/saegl5/gitea-gcloud-ubuntu#part-ii-set-up-the-instance)): Connect over SSH; check and upgrade packages; and install Nano and Caddy
+
+However, set up the web server (Caddy) differently
+
+```bash
+sudo nano /etc/caddy/Caddyfile
+```
+
+Input:
+
+```bash
+mydomain2.dev {
+	root * /var/www/html
+	file_server
+}
+```
+
+Create the "html" directory
+
+```bash
+sudo mkdir -p /var/www/html
+```
+
+Create an HTML file in it
+
+```bash
+sudo nano /var/www/html/index.html
+```
+
+Input:
+
+```bash
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			Domain Not Available
+		</title>
+		<style>
+			body {
+				font-family: -apple-system, "Segoe UI", system-ui, "Roboto", "Helvetica Neue", "Arial";
+				text-align: center;
+				padding: 20% 0%;
+			}
+		</style>
+	</head>
+	<body>
+		<img src="logo.png" width="100">
+		<h1>
+			Domain
+		</h1>
+		<p>
+			Undergoing maintenance. Check <u><a href="https://mydomain.dev">mydomain.dev</a></u> later.
+		</p>
+	</body>
+</html>
+```
+
+> Padding aligns text vertically. \
+> You can upload logo.png from [Part IV &#128279;](https://github.com/saegl5/gitea-gcloud-ubuntu#part-iv-enhance-the-instance) or use an emoji.
+
+Reload Caddy
+
+```bash
+sudo systemctl reload caddy
+```
+
+Redirect Gitea
+
+Connect to the original instance over SSH
+
+Modify the web server
+
+```bash
+sudo nano /etc/caddy/Caddyfile
+```
+
+Input:
+
+```bash
+mydomain.dev {
+	redir https://mydomain2.dev temporary
+	# root * /usr/share/caddy
+	# file_server
+	# reverse_proxy localhost:3000
+}
+```
+
+Reload the web server
+
+```bash
+sudo systemctl reload caddy
+```
+
+Check [https://mydomain.dev &#128279;](https://mydomain.dev) 
+
+You should be redirected to the maintenance page.
+
+Perform any maintenance.
+
+Once maintenance is completed, reset and reload the web server, and check [https://mydomain.dev &#128279;](https://mydomain.dev) 
+
+> Once completed, you can also shutdown the new instance, until you want to perform maintenance again. ~~Alternatively, you can redirect the maintenance page to Gitea: Connect to the new instance over SSH; modify the web server; under mydomain2.dev, input: `redir https://mydomain.dev temporary`; and reload the web server.~~ (no sense in running a server that is not being used)
 
 ## Part VII: Upgrading Packages, Collections and Ubuntu, and Retesting Functionality
 
