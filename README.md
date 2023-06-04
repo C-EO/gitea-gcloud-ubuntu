@@ -688,38 +688,6 @@ We have customized the home page and theme. Now, let's apply finishing touches..
 
 ### Compute Engine (Continued)
 
-#### Schedule Snapshots
-
-Back to Cloud Shell
-
-Create snapshot schedule
-
-```bash
-gcloud compute resource-policies create snapshot-schedule gitea-snapshots \
-    --project myproject \
-    --region us-west1 \
-    --max-retention-days 14 \
-    --on-source-disk-delete keep-auto-snapshots \
-    --daily-schedule \
-    --start-time 18:00 \
-    --storage-location us \
-    --description "regular and automatic back up"
-```
-
-> Start time is in Coordinated Universal Time (UTC).
->
-> 18:00 UTC is late morning in California.
-
-Attach the schedule to the instance
-
-```bash
-gcloud compute disks add-resource-policies gitea \
-    --resource-policies gitea-snapshots \
-    --zone us-west1-b
-```
-
-> Snapshots make Gitea's [backup and restore commands &#128279;](https://docs.gitea.io/en-us/backup-and-restore/) redundant. I am grateful for this, as well, because for me the backup command never completely worked (e.g., avatars and repo-avatars were never backed up).
-
 #### Redirect Gitea for Maintenance
 
 Back to Cloud Shell
@@ -835,6 +803,38 @@ Perform any maintenance.
 Once maintenance is completed, reset and reload the web server, and check [https://mydomain.dev &#128279;](https://mydomain.dev) 
 
 > Once completed, you can also shutdown the new instance, until you want to perform maintenance again. ~~Alternatively, you can redirect the maintenance page to Gitea: Connect to the new instance over SSH; modify the web server; under mydomain2.dev, input: `redir https://mydomain.dev temporary`; and reload the web server.~~ (no sense in running a server that is not being used)
+
+#### Schedule Snapshots
+
+Back to Cloud Shell
+
+Create snapshot schedule
+
+```bash
+gcloud compute resource-policies create snapshot-schedule gitea-snapshots \
+    --project myproject \
+    --region us-west1 \
+    --max-retention-days 14 \
+    --on-source-disk-delete keep-auto-snapshots \
+    --daily-schedule \
+    --start-time 18:00 \
+    --storage-location us \
+    --description "regular and automatic back up"
+```
+
+> Start time is in Coordinated Universal Time (UTC).
+>
+> 18:00 UTC is late morning in California.
+
+Attach the schedule to the instance
+
+```bash
+gcloud compute disks add-resource-policies gitea \
+    --resource-policies gitea-snapshots \
+    --zone us-west1-b
+```
+
+> Snapshots make Gitea's [backup and restore commands &#128279;](https://docs.gitea.io/en-us/backup-and-restore/) redundant. I am grateful for this, as well, because for me the backup command never completely worked (e.g., avatars and repo-avatars were never backed up).
 
 ## Part VII: Upgrading Packages, Collections and Ubuntu, and Retesting Functionality
 
