@@ -925,6 +925,8 @@ You should be redirected to the maintenance page.
 
 Perform any maintenance.
 
+> If doing so requires web access, you can briefly re-open port 3000 (see [Part I &#128279;](https://github.com/saegl5/gitea-gcloud-ubuntu#part-i-create-an-instance))
+
 Once maintenance is completed, reset and reload the web server, and check [https://mydomain.dev &#128279;](https://mydomain.dev) 
 
 > Once completed, you can also shutdown the new instance, until you want to perform maintenance again. ~~Alternatively, you can redirect the maintenance page to Gitea: Connect to the new instance over SSH; modify the web server; under mydomain2.dev, input: `redir https://mydomain.dev temporary`; and reload the web server.~~ (no sense in running a server that is not being used)
