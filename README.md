@@ -931,6 +931,8 @@ Once maintenance is completed, reset and reload the web server, and check [https
 
 > Once completed, you can also shutdown the new instance, until you want to perform maintenance again. ~~Alternatively, you can redirect the maintenance page to Gitea: Connect to the new instance over SSH; modify the web server; under mydomain2.dev, input: `redir https://mydomain.dev temporary`; and reload the web server.~~ (no sense in running a server that is not being used)
 
+Lastly, create one snapshot of the new instance. (Since the new instance is static, one should be sufficient.)
+
 ## Part IX: Troubleshooting
 
 If you run into any issues...
