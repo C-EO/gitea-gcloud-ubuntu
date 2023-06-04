@@ -15,9 +15,10 @@ Enjoy!
 * [Part III: Additional Measures to Secure Gitea](#part-iii-additional-measures-to-secure-gitea)
 * [Parts IV-VI: Enhance the Instance](#part-iv-enhance-the-instance)
 * [Part VII: Upgrading Packages, Collections and Ubuntu, and Retesting Functionality](#part-vii-upgrading-packages-collections-and-ubuntu-and-retesting-functionality)
-* [Part VIII: Troubleshooting](#part-viii-troubleshooting)
-* [Part IX: Privacy](#part-ix-privacy)
-* [Part X: Options](#part-x-options)
+* [Part VIII: Maintenance](#part-viii-maintenance)
+* [Part IX: Troubleshooting](#part-ix-troubleshooting)
+* [Part X: Privacy](#part-x-privacy)
+* [Part XI: Options](#part-xi-options)
 
 ## Part I: Create an Instance
 
@@ -297,7 +298,7 @@ Check email notifications
 
 Sign In > Site Administration > Configuration > Send Testing Email 
 
-> For creating additional user accounts, see Part IX.
+> For creating additional user accounts, see Part X.
 
 Back to Cloud Shell
 
@@ -446,6 +447,9 @@ Double-check that all of these measures have been taken...
 - [x] protected from brute-force attacks (crowdsec)
 - [x] mitigated risk of cross-regional outages (Part II)
 - [x] mitigated snapshot restoration error
+- [x] establish method to redirect domain for maintenance 
+
+> We will redirect the domain for maintenance in Part VIII.
 
 In fact, I like that Ubuntu packages&mdash;except for Node.js (Part IV)&mdash;are relatively up-to-date, not *bleeding edge* / potentially unstable as on Arch Linux and not potentially outdated as on Debian or RHEL.
 
@@ -688,122 +692,6 @@ We have customized the home page and theme. Now, let's apply finishing touches..
 
 ### Compute Engine (Continued)
 
-#### Redirect Gitea for Maintenance
-
-Back to Cloud Shell
-
-Create a new instance, and reserve the external IP address (see [Part I &#128279;](https://github.com/saegl5/gitea-gcloud-ubuntu#create-an-instance))
-
-> e2-micro should be sufficient.
-
-Register a new domain for the (new) instance, and add a Type A DNS record (see [Part I &#128279;](https://github.com/saegl5/gitea-gcloud-ubuntu#cloud-domains))
-
-> Remember to use the reserved external IP address for the DNS record.
-
-Set up the instance (see [Part II &#128279;](https://github.com/saegl5/gitea-gcloud-ubuntu#part-ii-set-up-the-instance)): Connect over SSH; check and upgrade packages; and install Nano and Caddy
-
-However, set up the web server (Caddy) differently
-
-```bash
-sudo nano /etc/caddy/Caddyfile
-```
-
-Input:
-
-```bash
-mydomain2.dev {
-	root * /var/www/html
-	file_server
-}
-```
-
-Create the "html" directory
-
-```bash
-sudo mkdir -p /var/www/html
-```
-
-Create an HTML file in it
-
-```bash
-sudo nano /var/www/html/index.html
-```
-
-Input:
-
-```bash
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>
-      Domain Not Available
-    </title>
-    <style>
-      body {
-        font-family: -apple-system, "Segoe UI", system-ui, "Roboto", "Helvetica Neue", "Arial";
-        text-align: center;
-        padding: 20% 0%;
-      }
-    </style>
-  </head>
-  <body>
-    <img src="logo.png" width="100">
-    <h1>
-      Domain
-    </h1>
-    <p>
-      Undergoing maintenance. Check <u><a href="https://mydomain.dev">mydomain.dev</a></u> later.
-    </p>
-  </body>
-</html>
-```
-
-> Padding aligns text vertically. \
-> You can upload logo.png from [Part IV &#128279;](https://github.com/saegl5/gitea-gcloud-ubuntu#part-iv-enhance-the-instance) or use an emoji.
-
-Reload Caddy
-
-```bash
-sudo systemctl reload caddy
-```
-
-Redirect Gitea
-
-Connect to the original instance over SSH
-
-Modify the web server
-
-```bash
-sudo nano /etc/caddy/Caddyfile
-```
-
-Input:
-
-```bash
-mydomain.dev {
-	redir https://mydomain2.dev temporary
-	# root * /usr/share/caddy
-	# file_server
-	# reverse_proxy localhost:3000
-}
-```
-
-Reload the web server
-
-```bash
-sudo systemctl reload caddy
-```
-
-Check [https://mydomain.dev &#128279;](https://mydomain.dev) 
-
-You should be redirected to the maintenance page.
-
-Perform any maintenance.
-
-Once maintenance is completed, reset and reload the web server, and check [https://mydomain.dev &#128279;](https://mydomain.dev) 
-
-> Once completed, you can also shutdown the new instance, until you want to perform maintenance again. ~~Alternatively, you can redirect the maintenance page to Gitea: Connect to the new instance over SSH; modify the web server; under mydomain2.dev, input: `redir https://mydomain.dev temporary`; and reload the web server.~~ (no sense in running a server that is not being used)
-
 #### Schedule Snapshots
 
 Back to Cloud Shell
@@ -919,9 +807,129 @@ sudo cscli metrics
 
 > "gitea-logs" should be parsed
 
-Except for two issues (Part VIII), simply retesting the domain and brute force protection have worked for me, but *your mileage may vary*.
+Except for two issues (Part IX), simply retesting the domain and brute force protection have worked for me, but *your mileage may vary*.
 
-## Part VIII: Troubleshooting
+## Part VIII: Maintenance
+
+If you want to perform maintenance...
+
+### Compute Engine (Continued)
+
+#### Redirect Gitea for Maintenance
+
+Create a new instance, and reserve the external IP address (see [Part I &#128279;](https://github.com/saegl5/gitea-gcloud-ubuntu#create-an-instance))
+
+> e2-micro should be sufficient.
+
+Register a new domain for the (new) instance, and add a Type A DNS record (see [Part I &#128279;](https://github.com/saegl5/gitea-gcloud-ubuntu#cloud-domains))
+
+> Remember to use the reserved external IP address for the DNS record.
+
+Set up the instance (see [Part II &#128279;](https://github.com/saegl5/gitea-gcloud-ubuntu#part-ii-set-up-the-instance)): Connect over SSH; check and upgrade packages; and install Nano and Caddy
+
+However, set up the web server (Caddy) differently
+
+```bash
+sudo nano /etc/caddy/Caddyfile
+```
+
+Input:
+
+```bash
+mydomain2.dev {
+	root * /var/www/html
+	file_server
+}
+```
+
+Create the "html" directory
+
+```bash
+sudo mkdir -p /var/www/html
+```
+
+Create an HTML file in it
+
+```bash
+sudo nano /var/www/html/index.html
+```
+
+Input:
+
+```bash
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      Domain Not Available
+    </title>
+    <style>
+      body {
+        font-family: -apple-system, "Segoe UI", system-ui, "Roboto", "Helvetica Neue", "Arial";
+        text-align: center;
+        padding: 20% 0%;
+      }
+    </style>
+  </head>
+  <body>
+    <img src="logo.png" width="100">
+    <h1>
+      Domain
+    </h1>
+    <p>
+      Undergoing maintenance. Check <u><a href="https://mydomain.dev">mydomain.dev</a></u> later.
+    </p>
+  </body>
+</html>
+```
+
+> Padding aligns text vertically. \
+> You can upload logo.png from [Part IV &#128279;](https://github.com/saegl5/gitea-gcloud-ubuntu#part-iv-enhance-the-instance) or use an emoji.
+
+Reload Caddy
+
+```bash
+sudo systemctl reload caddy
+```
+
+Redirect Gitea
+
+Connect to the original instance over SSH
+
+Modify the web server
+
+```bash
+sudo nano /etc/caddy/Caddyfile
+```
+
+Input:
+
+```bash
+mydomain.dev {
+	redir https://mydomain2.dev temporary
+	# root * /usr/share/caddy
+	# file_server
+	# reverse_proxy localhost:3000
+}
+```
+
+Reload the web server
+
+```bash
+sudo systemctl reload caddy
+```
+
+Check [https://mydomain.dev &#128279;](https://mydomain.dev) 
+
+You should be redirected to the maintenance page.
+
+Perform any maintenance.
+
+Once maintenance is completed, reset and reload the web server, and check [https://mydomain.dev &#128279;](https://mydomain.dev) 
+
+> Once completed, you can also shutdown the new instance, until you want to perform maintenance again. ~~Alternatively, you can redirect the maintenance page to Gitea: Connect to the new instance over SSH; modify the web server; under mydomain2.dev, input: `redir https://mydomain.dev temporary`; and reload the web server.~~ (no sense in running a server that is not being used)
+
+## Part IX: Troubleshooting
 
 If you run into any issues...
 
@@ -1035,7 +1043,7 @@ SOLUTION
 
 Replace MP4 files with GIF files.
 
-## Part IX: Privacy
+## Part X: Privacy
 
 Protect users...
 
@@ -1103,7 +1111,7 @@ Log into it to see what other users see.
 
 - [x] ALL users enroll in Two-Factor Authentication
 
-## Part X: Options
+## Part XI: Options
 
 Quality of life improvements...
 
