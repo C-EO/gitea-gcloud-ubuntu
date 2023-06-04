@@ -766,27 +766,27 @@ Input:
 ```bash
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>
-			Domain Not Available
-		</title>
-		<style>
-			body {
-				font-family: -apple-system, "Segoe UI", system-ui, "Roboto", "Helvetica Neue", "Arial";
-				text-align: center;
-				padding: 20% 0%;
-			}
-		</style>
-	</head>
-	<body>
-		<img src="logo.png" width="100">
-		<h1>
-			Domain
-		</h1>
-		<p>
-			Undergoing maintenance. Check <u><a href="https://mydomain.dev">mydomain.dev</a></u> later.
-		</p>
-	</body>
+  <head>
+	<title>
+	  Domain Not Available
+	</title>
+	<style>
+	  body {
+	    font-family: -apple-system, "Segoe UI", system-ui, "Roboto", "Helvetica Neue", "Arial";
+		text-align: center;
+		padding: 20% 0%;
+	  }
+	</style>
+  </head>
+  <body>
+	<img src="logo.png" width="100">
+	<h1>
+	  Domain
+	</h1>
+	<p>
+	  Undergoing maintenance. Check <u><a href="https://mydomain.dev">mydomain.dev</a></u> later.
+	</p>
+  </body>
 </html>
 ```
 
