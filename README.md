@@ -533,7 +533,7 @@ Locate the images
 cd public/img
 ```
 
-Feel free to download a copy of logo.png for a maintenance page (see [Part VI &#128279;](https://github.com/saegl5/gitea-gcloud-ubuntu#redirect-domain-for-maintenance))
+Feel free to download a copy of logo.png for a maintenance page (see Part VIII)
 
 > Click on DOWNLOAD FILE at the top edge of the pop-up window.
 
