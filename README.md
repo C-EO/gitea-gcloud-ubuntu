@@ -490,7 +490,7 @@ Prepare logo and favicon you want
 Focus on the logo. Export the PNG or JPG/JPEG image file to a SVG vector file. Name the vector file as `logo.svg`. Then, duplicate the file and rename the duplicate as `favicon.svg`.
 
 
-> Suggestion: Use vector graphics software (e.g., Inkscape or Affinity Designer). For Inkscape, export image files to <b>Inkscape SVG</b>. For Affinity Designer, export image files to <b>SVG (for export)</b>. Pixelmator Pro, an image editor, also works by ~~exporting image files~~ converting areas in image files to shapes, grouping the shapes and exporting the group to simply <b>SVG</b>.
+> Suggestion: Use vector graphics software (e.g., Inkscape or Affinity Designer). For Inkscape, export image files to <b>Inkscape SVG</b>. For Affinity Designer, export image files to <b>SVG (for export)</b>. Pixelmator Pro, an image editor, also works by exporting image files ~~converting areas in image files to shapes, grouping the shapes and exporting the group~~ to ~~simply~~ <b>SVG</b>.
 
 Copy the logo and favicon you want from your local computer to the instance
 
@@ -530,14 +530,14 @@ Be patient! Generating the images may take several minutes.
 Locate the images
 
 ```bash
-cd public/img
+cd public/assets/img # old: public/img
 ```
 
 Feel free to download a copy of logo.png for a maintenance page (see Part VIII)
 
 > Click on DOWNLOAD FILE at the top edge of the pop-up window.
 
-> Other SVG export formats could work, as well, but with Inkscape SVG or SVG (for export) the `make generate-images` command will generate the images completely. With other export formats, the command may not do so, for example with Affinity Designer's SVG (digital - high quality) preset, the command did not generate logo.png and favicon.png.
+> Other SVG export formats could work, as well, but with Inkscape SVG, SVG (for export) or SVG the `make generate-images` command will generate the images completely. With other export formats, the command may not do so, for example with Affinity Designer's SVG (digital - high quality) preset, the command did not generate logo.png and favicon.png.
 
 Create an "img" directory in the working directory of your instance, and move everything into it
 
