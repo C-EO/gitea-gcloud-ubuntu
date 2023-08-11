@@ -456,7 +456,7 @@ In fact, I like that Ubuntu packages&mdash;except for Node.js (Part IV)&mdash;ar
 > Keep in mind...
 >
 > - These measures are not exhaustive
-> - You don't have to customize the logo, favicon, home page, and theme (Parts IV-V)
+> - You don't have to customize the logo, favicon, home page, theme and font (Parts IV-V)
 
 Back to Cloud Shell
 
@@ -508,6 +508,17 @@ Clone Gitea's source repository
 ```bash
 git clone https://github.com/go-gitea/gitea.git gitea-source
 ```
+Checkout the latest release
+
+```bash
+cd gitea-source/ && \
+git checkout f48fda8eefa4d47e335f01ac92366b9373950e0e
+```
+
+> Locate the latest release by going to [https://github.com/go-gitea/gitea/releases &#128279;](https://github.com/go-gitea/gitea/releases) (e.g., v1.17.3) \
+> Copy its commit hash (e.g., f48fda8eefa4d47e335f01ac92366b9373950e0e)
+>
+> *Make sure that the Gitea service version (Part II) matches the release version. Otherwise, either upgrade the Gitea service (Part II) or checkout an earlier release.*
 
 Replace the logo and favicon in the cloned repository's assets directory with yours
 
@@ -566,7 +577,7 @@ Create another snapshot...
 
 ## Part V: Enhance the Instance (Cont.)
 
-We have customized the logo and favicon. Now, let's customize the home page and theme...
+We have customized the logo and favicon. Now, let's customize the home page, theme, and font...
 
 ### Compute Engine (Continued)
 
@@ -576,21 +587,9 @@ We have customized the logo and favicon. Now, let's customize the home page and 
 
 Back to the SSH browser window
 
-Clone Gitea's source repository
+Clone Gitea's source repository, and checkout the latest release
 
 > See Part IV.
-
-Checkout the latest release
-
-```bash
-cd gitea-source/ && \
-git checkout f48fda8eefa4d47e335f01ac92366b9373950e0e
-```
-
-> Locate the latest release by going to [https://github.com/go-gitea/gitea/releases &#128279;](https://github.com/go-gitea/gitea/releases) (e.g., v1.17.3) \
-> Copy its commit hash (e.g., f48fda8eefa4d47e335f01ac92366b9373950e0e)
->
-> *Make sure that the Gitea service version (Part II) matches the release version. Otherwise, either upgrade the Gitea service (Part II) or checkout an earlier release.*
 
 Modify the "home" template
 
@@ -682,13 +681,84 @@ Check [https://mydomain.dev &#128279;](https://mydomain.dev)
 
 Sign In > Settings > Appearance > redsilver > Update Theme 
 
+#### Customize the Font
+
+Back to the SSH browser window
+
+Clone Gitea's source repository, and checkout the latest release
+
+> See Part IV.
+
+Modify the "head_style" template
+
+```bash
+nano templates/base/head_style.tmpl
+```
+
+Append a link(s) to the stylesheet
+
+Example with Comic Neue:
+
+```tmpl
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
+```
+
+> Source: [https://fonts.google.com/specimen/Comic+Neue &#128279;](https://fonts.google.com/specimen/Comic+Neue)
+
+Set `--fonts-proportional`
+
+Example with Comic Neue (continued):
+
+```tmpl
+<style>
+    :root {
+        --fonts-proportional: "Comic Neue", cursive, -apple-system, "Segoe UI", system-ui, Roboto, "Helvetica Neue", Arial !important;
+    }
+</style>
+```
+
+> To change the monospaced font, append a link(s) to the stylesheet, then set `--fonts-monospace`
+> 
+> Example with Comic Mono:
+> 
+> ```tmpl
+> <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/comic-mono@0.0.1/index.css">
+> <style>
+>     :root {
+>         --fonts-monospace: "Comic Mono", ui-monospace, SFMono-Regular, "SF Mono", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace, var(--fonts-emoji) !important;
+>     }
+> </style>
+> ```
+> 
+> Source: [https://github.com/dtinth/comic-mono-font &#128279;](https://github.com/dtinth/comic-mono-font)
+
+Create a "templates" directory in the working directory of your instance, and move the "head_style" template into it
+
+```bash
+export WD=/var/lib/gitea/ && \
+sudo mkdir $WD/custom/templates/base/ && \
+sudo mv templates/base/head_style.tmpl $WD/custom/templates/base/
+```
+
+Restart the service
+
+```bash
+sudo systemctl restart gitea
+```
+
+Check [https://mydomain.dev &#128279;](https://mydomain.dev) 
+
+> Custom fonts will display automatically.
+
 Back to Cloud Shell
 
 Create another snapshot...
 
 ## Part VI: Enhance the Instance (Cont.)
 
-We have customized the home page and theme. Now, let's apply finishing touches...
+We have customized the home page, theme, and font. Now, let's apply finishing touches...
 
 ### Compute Engine (Continued)
 
