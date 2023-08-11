@@ -884,7 +884,7 @@ Input:
 ```
 
 > Padding aligns text vertically. \
-> You can upload logo.png from [Part IV &#128279;](https://github.com/saegl5/gitea-gcloud-ubuntu#part-iv-enhance-the-instance) or use an emoji.
+> You can upload logo.png from [Part IV &#128279;](https://github.com/saegl5/gitea-gcloud-ubuntu#part-iv-enhance-the-instance) or use an emoji; then, move it into the "html" directory: `sudo mv logo.png /var/www/html/` (example)
 
 Reload Caddy
 
