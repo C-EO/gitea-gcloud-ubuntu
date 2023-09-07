@@ -880,11 +880,54 @@ sudo cscli metrics
 
 Except for two issues ([Part IX](#part-ix-maintenance)), simply retesting the domain and brute force protection have worked for me, but *your mileage may vary*.
 
-## Part IX: Maintenance
+## Part VIII: Testing
 
-If you want to perform maintenance...
+If you want to test changes, before performing maintenance (i.e., applying the changes)...
 
 ### Compute Engine (Continued)
+
+List the snapshots
+
+```bash
+gcloud compute snapshots list
+```
+
+Look for the latest one, for example:
+
+> NAME: gitea-us-west1-b-20230906181913-frig00od \
+> DISK_SIZE_GB: 10 \
+> SRC_DISK: us-west1-b/disks/gitea \
+> STATUS: READY
+
+Copy its name, for example "gitea-us-west1-b-20230906181913-frig00od"
+
+Create a new instance using the latest snapshot
+
+```bash
+gcloud compute instances create gitea-testing \
+	--machine-type e2-small \
+	--source-snapshot gitea-us-west1-b-20230906181913-frig00od \
+	--scopes compute-rw,cloud-platform \
+	--tags http-server,https-server \
+	--shielded-secure-boot \
+	--zone us-west1-b
+```
+
+Connect to it over SSH (see [Part II](#part-ii-set-up-the-instance))
+
+> If testing requires web access, you can briefly re-open port 3000 (see [Part I](#part-i-create-an-instance))
+
+Once testing is completed, reset and reload the web server, and check [http://EXTERNAL_IP:3000 &#128279;](http://EXTERNAL_IP:3000) 
+
+> Once completed, you can stop and delete the instance with two simple commands: `gcloud compute instances stop gitea-testing` and `gcloud compute instances delete gitea-testing`
+
+## Part IX: Maintenance
+
+If you want to perform maintenance (i.e., apply the changes)...
+
+### Compute Engine (Continued)
+
+As for testing (see [Part VIII](#part-viii-testing)), we will create a separate instance. However, unlike for testing, this new instance will be persistent; we will briefly and periodically redirect the domain to it for maintenance.
 
 #### Redirect Gitea for Maintenance
 
@@ -1000,7 +1043,7 @@ Perform any maintenance.
 
 Once maintenance is completed, reset and reload the web server, and check [https://mydomain.dev &#128279;](https://mydomain.dev) 
 
-> Once completed, you can also shutdown the new instance, until you want to perform maintenance again. ~~Alternatively, you can redirect the maintenance page to Gitea: Connect to the new instance over SSH; modify the web server; under mydomain2.dev, input: `redir https://mydomain.dev temporary`; and reload the web server.~~ (no sense in running a server that is not being used)
+> Once completed, you can also shutdown the new instance with a simple command: `gcloud compute instances stop gitea-maintenance`, until you want to perform maintenance again ~~Alternatively, you can redirect the maintenance page to Gitea: Connect to the new instance over SSH; modify the web server; under mydomain2.dev, input: `redir https://mydomain.dev temporary`; and reload the web server.~~ (no sense in running a server that is not being used; run `gcloud compute instances start gitea-maintenance` to restart the instance)
 
 Lastly, create one snapshot of the new instance. (Since the new instance is static, one should be sufficient.)
 
