@@ -15,10 +15,11 @@ Enjoy!
 * [Part III: Additional Measures to Secure Gitea](#part-iii-additional-measures-to-secure-gitea)
 * [Parts IV-VI: Enhance the Instance](#part-iv-enhance-the-instance)
 * [Part VII: Upgrading Packages, Collections and Ubuntu, and Retesting Functionality](#part-vii-upgrading-packages-collections-and-ubuntu-and-retesting-functionality)
-* [Part VIII: Maintenance](#part-viii-maintenance)
-* [Part IX: Troubleshooting](#part-ix-troubleshooting)
-* [Part X: Privacy](#part-x-privacy)
-* [Part XI: Options](#part-xi-options)
+* [Part VIII: Testing](#part-viii-testing)
+* [Part IX: Maintenance](#part-ix-maintenance)
+* [Part X: Troubleshooting](#part-x-troubleshooting)
+* [Part XI: Privacy](#part-xi-privacy)
+* [Part XII: Options](#part-xii-options)
 
 ## Part I: Create an Instance
 
@@ -216,7 +217,7 @@ Install a web server
 
 [https://caddyserver.com/docs/install#debian-ubuntu-raspbian &#128279;](https://caddyserver.com/docs/install#debian-ubuntu-raspbian)
 
-> We will use caddy to obtain the required SSL certificate (Part I) and redirect the HTTP requests to the HTTPS address (Part I).
+> We will use caddy to obtain the required SSL certificate ([Part I](#part-i-create-an-instance)) and redirect the HTTP requests to the HTTPS address ([Part I](#part-i-create-an-instance)).
 
 Set up the web server
 
@@ -298,7 +299,7 @@ Check email notifications
 
 Sign In > Site Administration > Configuration > Send Testing Email 
 
-> For creating additional user accounts, see Part X.
+> For creating additional user accounts, see [Part XI](#part-xi-privacy).
 
 Back to Cloud Shell
 
@@ -434,9 +435,9 @@ Double-check that all of these measures have been taken...
 - [x] DNSSEC (Cloud DNS)
 - [x] create snapshots (doing after completing each part)
 
-> We will schedule snapshots in Part VI.
+> We will schedule snapshots in [Part VI](#part-vi-enhance-the-instance-cont).
 
-- [x] practice restoring instance from snapshot (did in Part I)
+- [x] practice restoring instance from snapshot (did in [Part I](#part-i-create-an-instance))
 - [x] SSL certificate (Caddy)
 - [x] reverse proxy (Caddy)
 - [x] SMTP Implicit TLS (port 465)
@@ -445,18 +446,18 @@ Double-check that all of these measures have been taken...
 - [x] strong administrator password
 - [x] closed port 3000
 - [x] protected from brute-force attacks (crowdsec)
-- [x] mitigated risk of cross-regional outages (Part II)
+- [x] mitigated risk of cross-regional outages ([Part II](#part-ii-set-up-the-instance))
 - [x] mitigated snapshot restoration error
 - [x] establish method to redirect domain for maintenance 
 
-> We will redirect the domain for maintenance in Part VIII.
+> We will redirect the domain for maintenance in [Part IX](#part-ix-maintenance).
 
-In fact, I like that Ubuntu packages&mdash;except for Node.js (Part IV)&mdash;are relatively up-to-date, not *bleeding edge* / potentially unstable as on Arch Linux and not potentially outdated as on Debian or RHEL.
+In fact, I like that Ubuntu packages&mdash;except for Node.js ([Part IV](#part-iv-enhance-the-instance))&mdash;are relatively up-to-date, not *bleeding edge* / potentially unstable as on Arch Linux and not potentially outdated as on Debian or RHEL.
 
 > Keep in mind...
 >
 > - These measures are not exhaustive
-> - You don't have to customize the logo, favicon, home page, theme and font (Parts IV-V)
+> - You don't have to customize the logo, favicon, home page, theme and font ([Parts IV-V](#part-iv-enhance-the-instance))
 
 Back to Cloud Shell
 
@@ -468,7 +469,7 @@ PHEW! The instance is finally set up. Now, let's work on enhancing the instance.
 
 ### Compute Engine (Continued)
 
-> Caution: The following instructions will not work with Gitea's snap package. See Part II for workable installation instructions.
+> Caution: The following instructions will not work with Gitea's snap package. See [Part II](#part-ii-set-up-the-instance) for workable installation instructions.
 
 #### Customize the Logo and Favicon
 
@@ -518,7 +519,7 @@ git checkout f48fda8eefa4d47e335f01ac92366b9373950e0e
 > Locate the latest release by going to [https://github.com/go-gitea/gitea/releases &#128279;](https://github.com/go-gitea/gitea/releases) (e.g., v1.17.3) \
 > Copy its commit hash (e.g., f48fda8eefa4d47e335f01ac92366b9373950e0e)
 >
-> *Make sure that the Gitea service version (Part II) matches the release version. Otherwise, either upgrade the Gitea service (Part II) or checkout an earlier release.*
+> *Make sure that the Gitea service version ([Part II](#part-ii-set-up-the-instance)) matches the release version. Otherwise, either upgrade the Gitea service ([Part II](#part-ii-set-up-the-instance)) or checkout an earlier release.*
 
 Replace the logo and favicon in the cloned repository's assets directory with yours
 
@@ -544,7 +545,7 @@ Locate the images
 cd public/assets/img # old: public/img
 ```
 
-Feel free to download a copy of logo.png for a maintenance page (see Part VIII)
+Feel free to download a copy of logo.png for a maintenance page (see [Part IX](#part-ix-maintenance))
 
 > Click on DOWNLOAD FILE at the top edge of the pop-up window.
 
@@ -581,7 +582,7 @@ We have customized the logo and favicon. Now, let's customize the home page, the
 
 ### Compute Engine (Continued)
 
-> Caution: Again, the following instructions will not work with Gitea's snap package. See Part II for workable installation instructions.
+> Caution: Again, the following instructions will not work with Gitea's snap package. See [Part II](#part-ii-set-up-the-instance) for workable installation instructions.
 
 #### Customize the Home Page
 
@@ -589,7 +590,7 @@ Back to the SSH browser window
 
 Clone Gitea's source repository, and checkout the latest release
 
-> See Part IV.
+> See [Part IV](#part-iv-enhance-the-instance).
 
 Modify the "home" template
 
@@ -687,7 +688,7 @@ Back to the SSH browser window
 
 Clone Gitea's source repository, and checkout the latest release
 
-> See Part IV.
+> See [Part IV](#part-iv-enhance-the-instance).
 
 Modify the "head_style" template
 
@@ -877,9 +878,9 @@ sudo cscli metrics
 
 > "gitea-logs" should be parsed
 
-Except for two issues (Part IX), simply retesting the domain and brute force protection have worked for me, but *your mileage may vary*.
+Except for two issues ([Part IX](#part-ix-maintenance)), simply retesting the domain and brute force protection have worked for me, but *your mileage may vary*.
 
-## Part VIII: Maintenance
+## Part IX: Maintenance
 
 If you want to perform maintenance...
 
@@ -887,15 +888,15 @@ If you want to perform maintenance...
 
 #### Redirect Gitea for Maintenance
 
-Create a new instance, and reserve the external IP address (see [Part I &#128279;](https://github.com/saegl5/gitea-gcloud-ubuntu#create-an-instance))
+Create a new instance, and reserve the external IP address (see [Part I](#create-an-instance))
 
 > e2-micro should be sufficient.
 
-Register a new domain for the (new) instance, and add a Type A DNS record (see [Part I &#128279;](https://github.com/saegl5/gitea-gcloud-ubuntu#cloud-domains))
+Register a new domain for the (new) instance, and add a Type A DNS record (see [Part I](#cloud-domains))
 
 > Remember to use the reserved external IP address for the DNS record.
 
-Set up the instance (see [Part II &#128279;](https://github.com/saegl5/gitea-gcloud-ubuntu#part-ii-set-up-the-instance)): Connect over SSH; check and upgrade packages; and install Nano and Caddy
+Set up the instance (see [Part II](#part-ii-set-up-the-instance)): Connect over SSH; check and upgrade packages; and install Nano and Caddy
 
 However, set up the web server (Caddy) differently
 
@@ -954,7 +955,7 @@ Input:
 ```
 
 > Padding aligns text vertically. \
-> You can upload logo.png from [Part IV &#128279;](https://github.com/saegl5/gitea-gcloud-ubuntu#part-iv-enhance-the-instance) or use an emoji; then, move it into the "html" directory: `sudo mv logo.png /var/www/html/` (example)
+> You can upload logo.png from [Part IV](#part-iv-enhance-the-instance) or use an emoji; then, move it into the "html" directory: `sudo mv logo.png /var/www/html/` (example)
 
 Reload Caddy
 
@@ -995,7 +996,7 @@ You should be redirected to the maintenance page.
 
 Perform any maintenance.
 
-> If doing so requires web access, you can briefly re-open port 3000 (see [Part I &#128279;](https://github.com/saegl5/gitea-gcloud-ubuntu#part-i-create-an-instance))
+> If doing so requires web access, you can briefly re-open port 3000 (see [Part I](#part-i-create-an-instance))
 
 Once maintenance is completed, reset and reload the web server, and check [https://mydomain.dev &#128279;](https://mydomain.dev) 
 
@@ -1003,7 +1004,7 @@ Once maintenance is completed, reset and reload the web server, and check [https
 
 Lastly, create one snapshot of the new instance. (Since the new instance is static, one should be sufficient.)
 
-## Part IX: Troubleshooting
+## Part X: Troubleshooting
 
 If you run into any issues...
 
@@ -1117,7 +1118,7 @@ SOLUTION
 
 Replace MP4 files with GIF files.
 
-## Part X: Privacy
+## Part XI: Privacy
 
 Protect users...
 
@@ -1185,7 +1186,7 @@ Log into it to see what other users see.
 
 - [x] ALL users enroll in Two-Factor Authentication
 
-## Part XI: Options
+## Part XII: Options
 
 Quality of life improvements...
 
