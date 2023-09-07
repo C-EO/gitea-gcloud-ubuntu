@@ -917,9 +917,9 @@ Connect to it over SSH (see [Part II](#part-ii-set-up-the-instance))
 
 > If testing requires web access, you can briefly re-open port 3000 (see [Part I](#part-i-create-an-instance))
 
-Once testing is completed, reset and reload the web server, and check [http://EXTERNAL_IP:3000 &#128279;](http://EXTERNAL_IP:3000) 
+Once testing is completed, reset and reload the web server, and, if testing required web access, check [http://EXTERNAL_IP:3000 &#128279;](http://EXTERNAL_IP:3000) 
 
-> Once completed, you can stop and delete the instance with two simple commands: `gcloud compute instances stop gitea-testing` and `gcloud compute instances delete gitea-testing`
+Once completed, stop and delete the instance with two simple commands: `gcloud compute instances stop gitea-testing` and `gcloud compute instances delete gitea-testing`
 
 ## Part IX: Maintenance
 
