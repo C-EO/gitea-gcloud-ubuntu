@@ -423,6 +423,34 @@ gcloud compute reservations create my-reservation \
 	--machine-type=e2-small 
 ```
 
+#### Enable CAPTCHA
+
+Back to the SSH browser window
+
+Enable CAPTCHA
+
+```bash
+sudo nano /etc/gitea/app.ini
+```
+
+Input:
+
+```ini
+[service]
+ENABLE_CAPTCHA = true 
+REQUIRE_CAPTCHA_FOR_LOGIN = true
+```
+
+Restart the service
+
+```bash
+sudo systemctl restart gitea
+```
+
+Check [https://mydomain.dev &#128279;](https://mydomain.dev)
+
+The default CAPTCHA type is `image`. For additional CAPTCHA types, consult [Gitea's Configuration Cheat Sheet &#128279;](https://docs.gitea.com/next/administration/config-cheat-sheet#service-service)
+
 #### Checklist
 
 Double-check that all of these measures have been taken...
@@ -448,6 +476,7 @@ Double-check that all of these measures have been taken...
 - [x] protected from brute-force attacks (crowdsec)
 - [x] mitigated risk of cross-regional outages ([Part II](#part-ii-set-up-the-instance))
 - [x] mitigated snapshot restoration error
+- [x] enabled CAPTCHA
 - [x] establish method to redirect domain for maintenance 
 
 > We will redirect the domain for maintenance in [Part IX](#part-ix-maintenance).
