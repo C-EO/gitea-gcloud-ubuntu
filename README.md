@@ -835,10 +835,10 @@ We have applied finishing touches. Now, let's discuss additional resources...
 Back to the SSH browser window
 
 ```bash
+sudo cscli collections upgrade --all # do first, otherwise may encounter broken dependencies
+sudo systemctl reload crowdsec # same
 sudo apt update
 sudo apt upgrade
-sudo cscli collections upgrade --all
-sudo systemctl reload crowdsec
 ```
 
 > If asked to reboot, run: `sudo reboot`. \
