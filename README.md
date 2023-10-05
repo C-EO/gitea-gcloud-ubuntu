@@ -941,6 +941,7 @@ gcloud compute instances create gitea-testing \
 	--shielded-secure-boot \
 	--zone us-west1-b
 ```
+> If a newer snapshot is needed, create one manually (see end of [Part I](#part-i-create-an-instance)) and recreate the instance with it.
 
 Connect to it over SSH (see [Part II](#part-ii-set-up-the-instance))
 
