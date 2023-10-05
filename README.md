@@ -945,11 +945,13 @@ gcloud compute instances create gitea-testing \
 
 Connect to it over SSH (see [Part II](#part-ii-set-up-the-instance))
 
-> If testing requires web access, you can briefly re-open port 3000 (see [Part I](#part-i-create-an-instance))
+> If testing requires web access, you can briefly re-open port 3000 (see [Part I](#part-i-create-an-instance)).
+> 
+> *AS OF [Gitea 1.20.5 &#128279;](https://github.com/go-gitea/gitea/pull/27013)*, to access the test instance via the web using port 3000 you will also need to reset the Server Domain and Gitea Base URL. Back to the SSH browser window, run `sudo nano /etc/gitea/app.ini`; change "DOMAIN" to `localhost` and "ROOT_URL" to `http://localhost:3000/`; then run `sudo systemctl restart gitea`.
 
 Once testing is completed, reset and reload the web server, and, if testing required web access, check [http://EXTERNAL_IP:3000 &#128279;](http://EXTERNAL_IP:3000) 
 
-Once completed, stop and delete the instance with two simple commands: `gcloud compute instances stop gitea-testing` and `gcloud compute instances delete gitea-testing`
+Once finished, stop and delete the instance with two simple commands: `gcloud compute instances stop gitea-testing` and `gcloud compute instances delete gitea-testing` (No need to revert the Server Domain and Gitea Base URL, since the test instance would be deleted.)
 
 ## Part IX: Maintenance
 
@@ -1069,11 +1071,11 @@ You should be redirected to the maintenance page.
 
 Perform any maintenance.
 
-> If doing so requires web access, you can briefly re-open port 3000 (see [Part I](#part-i-create-an-instance))
+> If doing so requires web access, you can briefly re-open port 3000 (see [Part I](#part-i-create-an-instance)). Just be sure to *temporarily* reset the Server Domain and Gitea Base URL (see [Part VIII](#part-viii-testing)).
 
-Once maintenance is completed, reset and reload the web server, and check [https://mydomain.dev &#128279;](https://mydomain.dev) 
+Once maintenance is completed, revert the Server Domain and Gitea Base URL, reset and reload the web server, and check [https://mydomain.dev &#128279;](https://mydomain.dev) 
 
-> Once completed, you can also shutdown the new instance with a simple command: `gcloud compute instances stop gitea-maintenance`, until you want to perform maintenance again ~~Alternatively, you can redirect the maintenance page to Gitea: Connect to the new instance over SSH; modify the web server; under mydomain2.dev, input: `redir https://mydomain.dev temporary`; and reload the web server.~~ (no sense in running a server that is not being used; run `gcloud compute instances start gitea-maintenance` to restart the instance)
+> Once finished, you can also shutdown the new instance with a simple command: `gcloud compute instances stop gitea-maintenance`, until you want to perform maintenance again ~~Alternatively, you can redirect the maintenance page to Gitea: Connect to the new instance over SSH; modify the web server; under mydomain2.dev, input: `redir https://mydomain.dev temporary`; and reload the web server.~~ (no sense in running a server that is not being used; run `gcloud compute instances start gitea-maintenance` to restart the instance)
 
 Lastly, create one snapshot of the new instance. (Since the new instance is static, one should be sufficient.)
 
