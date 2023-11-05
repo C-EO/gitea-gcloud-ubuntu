@@ -86,7 +86,10 @@ gcloud compute firewall-rules create gitea-setup \
 	--action ALLOW
 ```
 
-> Port 80 will redirect HTTP requests to the HTTPS address, and port 3000 will only be used to set up Gitea.
+> ~~Port 80 will redirect HTTP requests to the HTTPS address, and port 3000 will only be used to set up Gitea.~~<br>
+> Ports 80 and 3000 are for accepting HTTP requests, and port 443 is for accepting HTTPS requests.<br>
+> Caddy ([Part II](#part-ii-set-up-the-instance)) will redirect requests on port 80 to port 443.<br>
+> We will use port 3000 to set up Gitea and a reverse proxy ([Part II](#part-ii-set-up-the-instance)) and to perform maintenance periodically ([Part IX](#part-ix-maintenance)).
 
 #### Create an Instance
 
@@ -313,7 +316,7 @@ However, we can do better...
 
 ### Compute Engine (Continued)
 
-#### Close Port 3000
+#### Close Public Access to Port 3000
 
 Reconnect to Cloud Shell
 
@@ -472,7 +475,7 @@ Double-check that all of these measures have been taken...
 - [x] &cross; OpenID sign-in
 - [x] &cross; self-registration
 - [x] strong administrator password
-- [x] closed port 3000
+- [x] closed public access to port 3000
 - [x] protected from brute-force attacks (crowdsec)
 - [x] mitigated risk of cross-regional outages ([Part II](#part-ii-set-up-the-instance))
 - [x] mitigated snapshot restoration error
